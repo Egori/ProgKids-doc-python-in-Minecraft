@@ -1,12 +1,89 @@
 ### Документация по доступным модулям и методам
 
-#### 1. Модуль `blocks`
-Содержит константы, представляющие различные блоки в Minecraft.
+### Модуль `blocks`
+Содержит константы, представляющие различные блоки в Minecraft. Каждый блок также имеет числовой идентификатор (ID), который можно использовать вместо констант.
 
-**Доступные блоки:**
-- `AIR`, `BED`, `BEDROCK`, `BEDROCK_INVISIBLE`, `BOOKSHELF`, `BRICK_BLOCK`, `CACTUS`, `CHEST`, `CLAY`, `COAL_ORE`, `COBBLESTONE`, `COBWEB`, `CRAFTING_TABLE`, `DIAMOND_BLOCK`, `DIAMOND_ORE`, `DIRT`, `DOOR_IRON`, `DOOR_WOOD`, `FARMLAND`, `FENCE`, `FENCE_GATE`, `FIRE`, `FLOWER_RED`, `FLOWER_YELLOW`, `FURNACE_ACTIVE`, `FURNACE_INACTIVE`, `GLASS`, `GLASS_PANE`, `GLOWSTONE_BLOCK`, `GOLD_BLOCK`, `GOLD_ORE`, `GRASS`, `GRASS_TALL`, `GRAVEL`, `HAY_BLOCK`, `ICE`, `IRON_BLOCK`, `IRON_ORE`, `LADDER`, `LAPIS_LAZULI_BLOCK`, `LAPIS_LAZULI_ORE`, `LAVA`, `LAVA_FLOWING`, `LAVA_STATIONARY`, `LEAVES`, `MELON`, `MOSS_STONE`, `MUSHROOM_BROWN`, `MUSHROOM_RED`, `OBSIDIAN`, `REDSTONE_ORE`, `SAND`, `SANDSTONE`, `SAPLING`, `SNOW`, `SNOW_BLOCK`, `STAIRS_COBBLESTONE`, `STAIRS_WOOD`, `STONE`, `STONE_BRICK`, `STONE_SLAB`, `STONE_SLAB_DOUBLE`, `SUGAR_CANE`, `TNT`, `TORCH`, `WATER`, `WATER_FLOWING`, `WATER_STATIONARY`, `WOOD`, `WOOD_PLANKS`, `WOOL`
+#### Доступные блоки и их ID:
 
-**Пример использования:**
+| Константа               | ID  | Описание                          |
+|-------------------------|-----|-----------------------------------|
+| `AIR`                   | 0   | Воздух                            |
+| `BEDROCK`               | 7   | Каменная порода                   |
+| `BEDROCK_INVISIBLE`     | 95  | Невидимая каменная порода         |
+| `BOOKSHELF`             | 47  | Книжная полка                     |
+| `BRICK_BLOCK`           | 45  | Кирпичный блок                    |
+| `CACTUS`                | 81  | Кактус                            |
+| `CLAY`                  | 82  | Глина                             |
+| `COAL_ORE`              | 16  | Угольная руда                     |
+| `COBBLESTONE`           | 4   | Булыжник                          |
+| `COBWEB`                | 30  | Паутина                           |
+| `CRAFTING_TABLE`        | 58  | Верстак                           |
+| `DIAMOND_BLOCK`         | 57  | Алмазный блок                     |
+| `DIAMOND_ORE`           | 56  | Алмазная руда                     |
+| `DIRT`                  | 3   | Земля                             |
+| `DOOR_IRON`             | 71  | Железная дверь                    |
+| `DOOR_WOOD`             | 64  | Деревянная дверь                  |
+| `FARMLAND`              | 60  | Возделанная земля                 |
+| `FENCE`                 | 85  | Забор                             |
+| `FENCE_GATE`            | 107 | Калитка забора                    |
+| `FIRE`                  | 51  | Огонь                             |
+| `FLOWER_RED`            | 38  | Красный цветок                    |
+| `FLOWER_YELLOW`         | 37  | Желтый цветок                     |
+| `GLASS`                 | 20  | Стекло                            |
+| `GLASS_PANE`            | 102 | Стеклянная панель                 |
+| `GLOWSTONE_BLOCK`       | 89  | Светящийся камень                 |
+| `GOLD_BLOCK`            | 41  | Золотой блок                      |
+| `GOLD_ORE`              | 14  | Золотая руда                      |
+| `GRASS`                 | 2   | Трава                             |
+| `GRASS_TALL`            | 31  | Высокая трава                     |
+| `GRAVEL`                | 13  | Гравий                            |
+| `HAY_BLOCK`             | 170 | Сено                              |
+| `ICE`                   | 79  | Лед                               |
+| `IRON_BLOCK`            | 42  | Железный блок                     |
+| `IRON_ORE`              | 15  | Железная руда                     |
+| `LADDER`                | 65  | Лестница                          |
+| `LAPIS_LAZULI_BLOCK`    | 22  | Блок лазурита                     |
+| `LAPIS_LAZULI_ORE`      | 21  | Лазуритовая руда                  |
+| `LAVA`                  | 10  | Лава                              |
+| `LAVA_FLOWING`          | 10  | Текущая лава                      |
+| `LAVA_STATIONARY`       | 11  | Неподвижная лава                  |
+| `LEAVES`                | 18  | Листья                            |
+| `MELON`                 | 103 | Арбуз                             |
+| `MOSS_STONE`            | 48  | Мшистый камень                    |
+| `MUSHROOM_BROWN`        | 39  | Коричневый гриб                   |
+| `MUSHROOM_RED`          | 40  | Красный гриб                      |
+| `OBSIDIAN`              | 49  | Обсидиан                          |
+| `REDSTONE_ORE`          | 73  | Редстоуновая руда                 |
+| `SAND`                  | 12  | Песок                             |
+| `SANDSTONE`             | 24  | Песчаник                          |
+| `SAPLING`               | 6   | Саженец                           |
+| `SNOW`                  | 78  | Снег                              |
+| `SNOW_BLOCK`            | 80  | Снежный блок                      |
+| `STAIRS_COBBLESTONE`    | 67  | Каменные ступени                  |
+| `STAIRS_WOOD`           | 53  | Деревянные ступени                |
+| `STONE`                 | 1   | Камень                            |
+| `STONE_BRICK`           | 98  | Каменный кирпич                   |
+| `STONE_SLAB`            | 44  | Каменная плита                    |
+| `STONE_SLAB_DOUBLE`     | 43  | Двойная каменная плита            |
+| `SUGAR_CANE`            | 83  | Сахарный тростник                 |
+| `TNT`                   | 46  | Динамит                           |
+| `TORCH`                 | 50  | Факел                             |
+| `WATER`                 | 9   | Вода                              |
+| `WATER_FLOWING`         | 8   | Текущая вода                      |
+| `WATER_STATIONARY`      | 9   | Неподвижная вода                  |
+| `WOOD`                  | 17  | Дерево                            |
+| `WOOD_PLANKS`           | 5   | Деревянные доски                  |
+| `WOOL`                  | 35  | Шерсть                            |
+
+#### Пример использования с ID:
+
+```python
+import mc
+
+# Установка блока земли на позицию (0, 0, 0) с использованием ID
+mc.world.setBlock(0, 0, 0, 3)  # 3 - это ID блока земли (DIRT)
+```
+
 ```python
 import mc
 
