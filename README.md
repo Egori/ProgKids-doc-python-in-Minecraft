@@ -145,15 +145,6 @@ mc.player.turnRight(mc.directions.NORTH)
 - `removeDrone()`
 - `sendCommand()`
 
-**Пример использования:**
-```python
-import mc
-
-# Создание дрона и перемещение его вперед
-drone = mc.drones.createDrone()
-drone.move(mc.directions.FORWARD)
-```
-
 - **`createDrone(x, y, z, name)`**  
   Создает дрон с указанными координатами и именем.  
   **Параметры:**  
