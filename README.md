@@ -117,6 +117,8 @@ import mc
 
 # Создание коровы на позиции (10, 0, 10)
 mc.world.spawnCreature(10, 0, 10, mc.creatures.COW)
+
+mc.world.spawnCreature(10, 0, 10, "COW")
 ```
 
 #### 4. Модуль `directions`
@@ -130,106 +132,292 @@ mc.world.spawnCreature(10, 0, 10, mc.creatures.COW)
 import mc
 
 # Поворот игрока на север
-mc.player.turnRight(mc.directions.NORTH)
+mc.player.lookTo(mc.directions.NORTH)
+# Другой способ, можно передать строку в параметр
+mc.player.lookTo("NORTH")
 ```
 
-#### 5. Модуль `drones`
+# 5. Модуль `drones`
 Содержит классы и функции для управления дронами.
 
-**Доступные методы:**
-- `Drone` (класс)
-- `createDrone(x, y, z, name)`
-- `getDrone(name)`
-- `list()`
-- `removeAll()`
-- `removeDrone()`
-- `sendCommand()`
+## Основные функции
 
-- **`createDrone(x, y, z, name)`**  
-  Создает дрон с указанными координатами и именем.  
-  **Параметры:**  
-  - `x`, `y`, `z` (int) — координаты создания дрона.  
-  - `name` (str) — уникальное имя дрона.  
-  **Возвращает:**  
-  - Объект дрона (`Drone`).  
+### `createDrone(x, y, z, name)`
 
-  **Пример использования:**  
-  ```python
-  drone = drones.createDrone(0, 0, 0, "Игорь")
-  ```
+Создает дрона с указанными координатами и именем.
 
-- **`getDrone(name)`**  
-  Возвращает объект дрона по его имени.  
-  **Параметры:**  
-  - `name` (str) — имя дрона.  
-  **Возвращает:**  
-  - Объект дрона (`Drone`), если дрон с таким именем существует.  
+- **Параметры:**
+  - `x`, `y`, `z` — координаты начального положения дрона.
+  - `name` — уникальное имя дрона.
+- **Возвращает:** объект дрона.
 
-  **Пример использования:**  
-  ```python
-  drone = drones.getDrone("Игорь")
-  ```
-
-- **`list()`**  
-  Возвращает список всех созданных дронов.  
-  **Возвращает:**  
-  - Список объектов дронов (`list[Drone]`).  
-
-  **Пример использования:**  
-  ```python
-  drone_list = drones.list()
-  ```
-
-- **`removeAll()`**  
-  Удаляет все созданные дроны.  
-
-  **Пример использования:**  
-  ```python
-  drones.removeAll()
-  ```
-
-- **`removeDrone(name)`**  
-  Удаляет дрон по его имени.  
-  **Параметры:**  
-  - `name` (str) — имя дрона.  
-
-  **Пример использования:**  
-  ```python
-  drones.removeDrone("Игорь")
-  ```
-
-- **`sendCommand(command)`**  
-  Отправляет команду дрону.  
-  **Параметры:**  
-  - `command` (str) — команда для выполнения.  
-
-  **Пример использования:**  
-  ```python
-  drone.sendCommand("move_forward")
-  ```
-
-#### Пример использования:
+**Пример:**
 
 ```python
-import mc
-
-# Создание дрона с именем "Игорь"
-drone = mc.drones.createDrone(0, 0, 0, "Игорь")
-
-# Получение дрона по имени
-drone = mc.drones.getDrone("Игорь")
-
-# Получение списка всех дронов
-drone_list = mc.drones.list()
-
-# Удаление дрона по имени
-mc.drones.removeDrone("Игорь")
-
-# Удаление всех дронов
-mc.drones.removeAll()
+drone = drones.createDrone(0, 0, 0, "Игорь")
+print(drone.getPos())  # [0, 0, 0]
 ```
 
-#### 6. Модуль `entity`
+### `getDrone(name)`
+
+Возвращает объект дрона по его имени.
+
+- **Параметры:**
+  - `name` — имя дрона.
+- **Возвращает:** объект дрона или `None`, если дрон не найден.
+
+**Пример:**
+
+```python
+drone = drones.getDrone("Игорь")
+if drone:
+    print("Дрон найден!")
+else:
+    print("Дрон не найден!")
+```
+
+### `list()`
+
+Возвращает список всех активных дронов.
+
+- **Возвращает:** массив с именами дронов.
+
+**Пример:**
+
+```python
+drone_names = drones.list()
+print(drone_names)  # ["Игорь", "Андрей"]
+```
+
+### `removeDrone(name)`
+
+Удаляет дрона с указанным именем.
+
+- **Параметры:**
+  - `name` — имя дрона.
+- **Возвращает:** `true`, если дрон удалён, иначе `false`.
+
+**Пример:**
+
+```python
+success = drones.removeDrone("Игорь")
+print(success)  # True
+```
+
+### `removeAll()`
+
+Удаляет всех дронов.
+
+- **Возвращает:** `true`, если все дроны удалены, иначе `false`.
+
+**Пример:**
+
+```python
+success = drones.removeAll()
+print(success)  # True
+```
+
+---
+
+## Методы дрона
+
+### Перемещение и поворот
+
+#### `moveForward(distance)`
+
+Перемещает дрона вперёд на указанное количество блоков.
+
+**Пример:**
+
+```python
+drone.moveForward(5)
+```
+
+#### `move(direction, distance)`
+
+Перемещает дрона в указанном направлении.
+
+**Пример:**
+
+```python
+drone.move("NORTH", 3)
+```
+
+#### `lookTo(direction)`
+
+Поворачивает дрона в указанном направлении.
+
+**Пример:**
+
+```python
+drone.lookTo("EAST")
+```
+
+#### `turn(pitch, yaw)`
+
+Поворачивает дрона на указанные углы.
+
+**Пример:**
+
+```python
+drone.turn(30, 90)
+```
+
+#### `turnLeft()` и `turnRight()`
+
+Поворачивает дрона на 90 градусов.
+
+**Пример:**
+
+```python
+drone.turnLeft()
+drone.turnRight()
+```
+
+---
+
+### Взаимодействие с блоками
+
+#### `breakBlock()`
+
+Разрушает блок перед дроном.
+
+**Пример:**
+
+```python
+success = drone.breakBlock()
+print(success)  # True
+```
+
+#### `placeBlock(type)`
+
+Устанавливает блок перед дроном.
+
+**Пример:**
+
+```python
+drone.placeBlock("stone")
+```
+
+#### `getBlockInFront()`
+
+Возвращает тип блока перед дроном.
+
+**Пример:**
+
+```python
+block = drone.getBlockInFront()
+print(block)  # "stone"
+```
+
+---
+
+### Инвентарь
+
+#### `getInventory()`
+
+Возвращает содержимое инвентаря дрона.
+
+**Пример:**
+
+```python
+inventory = drone.getInventory()
+print(inventory)
+```
+
+#### `inventoryContains(item)`
+
+Проверяет наличие предмета в инвентаре.
+
+**Пример:**
+
+```python
+has_item = drone.inventoryContains("stone")
+print(has_item)  # True
+```
+
+#### `pickItem([material])`
+
+Подбирает предмет в инвентарь.
+
+**Пример:**
+
+```python
+drone.pickItem(["stone"])
+```
+
+#### `dropItem(material, amount)`
+
+Выбрасывает предмет из инвентаря.
+
+**Пример:**
+
+```python
+drone.dropItem("stone", 1)
+```
+
+---
+
+### Другие методы
+
+#### `getPos()`
+
+Возвращает текущие координаты дрона.
+
+**Пример:**
+
+```python
+pos = drone.getPos()
+print(pos)  # [x, y, z]
+```
+
+#### `destroy()`
+
+Уничтожает дрона.
+
+**Пример:**
+
+```python
+drone.destroy()
+```
+
+#### `shootArrow()`
+
+Стреляет из лука.
+
+**Пример:**
+
+```python
+drone.shootArrow()
+```
+
+---
+
+## Пример использования
+
+```python
+# Создание дрона
+drone = drones.createDrone(0, 0, 0, "Игорь")
+
+# Перемещение и поворот
+drone.moveForward(5)
+drone.turnRight()
+
+# Взаимодействие с блоками
+drone.placeBlock("stone")
+block_type = drone.getBlockInFront()
+print(block_type)
+
+# Работа с инвентарём
+drone.pickItem(["stone"])
+drone.dropItem("stone", 1)
+
+# Уничтожение дрона
+drone.destroy()
+```
+
+
+# 6. Модуль `entity`
 Содержит методы для работы с сущностями.
 
 **Доступные методы:**
