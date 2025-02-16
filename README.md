@@ -138,8 +138,8 @@ mc.player.turnRight(mc.directions.NORTH)
 
 **Доступные методы:**
 - `Drone` (класс)
-- `createDrone()`
-- `getDrone()`
+- `createDrone(x, y, z, name)`
+- `getDrone(name)`
 - `list()`
 - `removeAll()`
 - `removeDrone()`
@@ -152,6 +152,90 @@ import mc
 # Создание дрона и перемещение его вперед
 drone = mc.drones.createDrone()
 drone.move(mc.directions.FORWARD)
+```
+
+- **`createDrone(x, y, z, name)`**  
+  Создает дрон с указанными координатами и именем.  
+  **Параметры:**  
+  - `x`, `y`, `z` (int) — координаты создания дрона.  
+  - `name` (str) — уникальное имя дрона.  
+  **Возвращает:**  
+  - Объект дрона (`Drone`).  
+
+  **Пример использования:**  
+  ```python
+  drone = drones.createDrone(0, 0, 0, "Игорь")
+  ```
+
+- **`getDrone(name)`**  
+  Возвращает объект дрона по его имени.  
+  **Параметры:**  
+  - `name` (str) — имя дрона.  
+  **Возвращает:**  
+  - Объект дрона (`Drone`), если дрон с таким именем существует.  
+
+  **Пример использования:**  
+  ```python
+  drone = drones.getDrone("Игорь")
+  ```
+
+- **`list()`**  
+  Возвращает список всех созданных дронов.  
+  **Возвращает:**  
+  - Список объектов дронов (`list[Drone]`).  
+
+  **Пример использования:**  
+  ```python
+  drone_list = drones.list()
+  ```
+
+- **`removeAll()`**  
+  Удаляет все созданные дроны.  
+
+  **Пример использования:**  
+  ```python
+  drones.removeAll()
+  ```
+
+- **`removeDrone(name)`**  
+  Удаляет дрон по его имени.  
+  **Параметры:**  
+  - `name` (str) — имя дрона.  
+
+  **Пример использования:**  
+  ```python
+  drones.removeDrone("Игорь")
+  ```
+
+- **`sendCommand(command)`**  
+  Отправляет команду дрону.  
+  **Параметры:**  
+  - `command` (str) — команда для выполнения.  
+
+  **Пример использования:**  
+  ```python
+  drone.sendCommand("move_forward")
+  ```
+
+#### Пример использования:
+
+```python
+import mc
+
+# Создание дрона с именем "Игорь"
+drone = mc.drones.createDrone(0, 0, 0, "Игорь")
+
+# Получение дрона по имени
+drone = mc.drones.getDrone("Игорь")
+
+# Получение списка всех дронов
+drone_list = mc.drones.list()
+
+# Удаление дрона по имени
+mc.drones.removeDrone("Игорь")
+
+# Удаление всех дронов
+mc.drones.removeAll()
 ```
 
 #### 6. Модуль `entity`
